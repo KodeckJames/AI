@@ -7,6 +7,7 @@ export async function POST(req: Request) {
         const { text } = await generateText({
             model: openai("gpt-4.1-nano"),
             prompt,
+            maxOutputTokens:100
         });
         return Response.json({ text });
     } catch (error) {
