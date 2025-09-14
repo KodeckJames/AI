@@ -10,6 +10,15 @@ export async function POST(req: Request) {
       messages: convertToModelMessages(messages),
     })
 
+    result.usage.then((usage) => {
+      console.log({
+        messageCount: messages.length,
+        inputTokens: usage.inputTokens,
+        outputTokens: usage.outputTokens,
+        totalTokens: usage.outputTokens,
+      })
+    })
+
     return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error('Error streaming chat completion:', error)
