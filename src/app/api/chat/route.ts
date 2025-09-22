@@ -9,12 +9,21 @@ export async function POST(req: Request) {
       model: openai('gpt-4.1-nano'),
       messages: [
         {
-          role: 'system',
-          content:
-            'You are a helpful coding assistant. Keep responses under 3 sentences and focus on practical examples.',
+          role: "system",
+          content:"You are a helpful coding assistant. Keep responses under 3 sentences and focus on practical examples."
         },
+        // {
+        //   role: "system",
+        //   content:"Convert user questions about React into code examples",
+        // }, {
+        //   role: "user",
+        //   content:"How to toggle a boolean?"
+        // }, {
+        //   role: "assistant",
+        //   content:"const [isOpen, setIsOpen]=useState(false);\nconst toggle = () => setIsOpen(!isOpen)!"
+        // },
         ...convertToModelMessages(messages),
-      ],
+      ]
     })
 
     result.usage.then((usage) => {
